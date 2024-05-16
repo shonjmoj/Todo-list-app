@@ -12,6 +12,7 @@ const Input: FC<InputProps> = ({ className, label, type, ...restOfProps }) => {
         />
       ) : (
         <input
+          type={type}
           className={`border border-slate-800 px-4 py-2 bg-transparent rounded outline-none`}
           {...restOfProps}
         />
