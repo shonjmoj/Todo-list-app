@@ -30,5 +30,5 @@ model Task {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   authorId    String   @db.ObjectId
-  user        User     @relation(fields: [authorId], references: [id])
+  author      User     @relation(fields: [authorId], references: [id])
 }

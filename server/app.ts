@@ -1,14 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import bodyParser from "body-parser";
-import express from "express";
-import { login, logout, signup } from "./auth";
-import { verifyToken } from "./lib/middleware";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
-import { getTasks } from "./task";
-import { clientUrl } from "./lib/utils";
-import { getUser } from "./user";
+import express from "express";
+import { prod } from "./lib/contants";
+import { auth } from "./controller/auth";
+import { user } from "./controller/user";
+import { task } from "./controller/tasks";
 
 dotenv.config();
 
@@ -18,27 +17,18 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: clientUrl,
+    origin: prod,
     credentials: true,
   })
 );
-const protectedRoutes = express.Router();
-const publicRoutes = express.Router();
+
+export const prisma = new PrismaClient();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-export const prisma = new PrismaClient();
+app.use(auth);
+app.use(user);
+app.use(task);
 
-publicRoutes.post("/signup", signup);
-publicRoutes.post("/login", login);
-
-protectedRoutes.use(verifyToken);
-protectedRoutes.post("/logout", logout);
-protectedRoutes.get("/me", getUser);
-protectedRoutes.get("/tasks", getTasks);
-
-app.use(publicRoutes);
-app.use(protectedRoutes);
-
-app.listen(4000, () => {});
+app.listen(4000);
