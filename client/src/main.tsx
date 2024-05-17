@@ -1,28 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./Login.tsx";
-import Signup from "./Signup.tsx";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
-]);
+import App from "./App";
+import Signup from "./Signup";
+import Login from "./Login";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { GlobalContextProvider } from "./context/index.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <GlobalContextProvider>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </GlobalContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
