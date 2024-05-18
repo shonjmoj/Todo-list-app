@@ -3,25 +3,27 @@
 
 there is 2 folders **client** and **server**.
 
-### to run backend run `cd ./server` first : 
+### To run backend we need to build it first. run `cd ./server` : 
 
 **for `pnpm` users :** 
 
 ```
 pnpm i
-pnpm dev
+pnpm build
+pnpm start
 ```
 **for `npm` users :**
 
 ```
 npm i
-npm run dev
+npm run build
+npm run start
 ```
 
-*backend is to serve you now!*
+*Server is ready to serve you now! open another prompt to setup the client.*
 
 
-### to run the frontend run `cd ./client` first : 
+### Same thing with the frontend. run `cd ./client` : 
 
 **for `pnpm` users :**
 
