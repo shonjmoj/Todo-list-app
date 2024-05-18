@@ -15,8 +15,8 @@
   "version": "1.0.0",
   "main": "dist/app.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node app.ts",
-    "build": "tsc",
+    "dev": "npx prisma generate && npx prisma db push && nodemon --exec ts-node app.ts",
+    "build": "npx prisma generate && npx prisma db push && tsc",
     "start": "node dist/app.js"
   },
   "keywords": [],
