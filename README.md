@@ -39,7 +39,7 @@ npm i
 npm run build
 npm run start
 ```
-*In order to run tests you can simply execute the following commands :*
+### In order to run tests you can simply execute the following commands :
 
 **for `pnpm` users :**
 
