@@ -13,7 +13,7 @@ function App() {
       </h1>
       <AddTaskForm />
       <h3 className="italic opacity-80">
-        NB: Task list is scrollable in case of more than 4 tasks*
+        NB: Tasks list is scrollable in case of more than 4 tasks*
       </h3>
       <TasksList />
     </main>

@@ -3,6 +3,8 @@ import { axiosinstance, globalContext } from "@/lib/contants";
 import { TaskData, TaskProps } from "@/lib/types";
 import { useContext, useEffect } from "react";
 import Task from "../Task";
+import toast from "react-hot-toast";
+import { AxiosError } from "axios";
 
 const TasksList = () => {
   const { tasks, setTasks } = useContext(globalContext);
@@ -16,24 +18,27 @@ const TasksList = () => {
 
   const updateTask = async (taskData: TaskData) => {
     try {
-      const { data: updatedTask } = await axiosinstance.post<TaskProps>(
+      const { data: updatedTask, status } = await axiosinstance.post<TaskProps>(
         "/updatetask",
         taskData
       );
+      if (status === 200) {
+        toast.success("Task updated !");
+      }
       setTasks((prev) =>
         prev?.map((task) =>
           task.id === updatedTask.id
             ? {
                 ...task,
-                title: updatedTask.title,
-                description: updatedTask.description,
-                status: updatedTask.status,
+                ...updatedTask,
               }
             : task
         )
       );
     } catch (error) {
-      console.error(error);
+      if (error instanceof AxiosError) {
+        toast.error(error?.response?.data);
+      }
     }
   };
 

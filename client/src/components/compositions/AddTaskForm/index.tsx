@@ -2,11 +2,13 @@ import Input from "@/components/atoms/input";
 import Button from "@/components/atoms/button";
 import { useContext, useState } from "react";
 import { axiosinstance, globalContext } from "@/lib/contants";
+import toast from "react-hot-toast";
+import { AxiosError } from "axios";
 
 const AddTaskForm = () => {
+  const { setTasks } = useContext(globalContext);
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
-  const { setTasks } = useContext(globalContext);
 
   const nothingToAdd = !taskTitle || !taskDescription;
 
@@ -20,15 +22,26 @@ const AddTaskForm = () => {
     setTaskDescription(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    (async () => {
-      const { data } = await axiosinstance.post("/addtask", {
+  const addTask = async () => {
+    try {
+      const { data, status } = await axiosinstance.post("/addtask", {
         title: taskTitle,
         description: taskDescription,
       });
+      if (status === 201) toast.success("Task added !");
       setTasks((prev) => [data, ...prev!]);
-    })();
+      setTaskTitle("");
+      setTaskDescription("");
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error?.response?.data);
+      }
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    addTask();
   };
 
   return (
@@ -37,6 +50,7 @@ const AddTaskForm = () => {
       className=" w-full md:w-[70%] xl:w-[50%] flex flex-col justify-between gap-3 sm:gap-5"
     >
       <Input
+        value={taskTitle}
         type="text"
         label="Title"
         placeholder="New task ?"
@@ -44,6 +58,7 @@ const AddTaskForm = () => {
         onChange={handleTaskTitleChange}
       />
       <Input
+        value={taskDescription}
         type="textarea"
         label="Description"
         placeholder="Description..."

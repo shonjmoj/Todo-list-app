@@ -52,6 +52,12 @@ function Login() {
         type="submit"
         className="border border-slate-900 bg-slate-900 text-slate-300"
       />
+      <span className="text-sm lg:text-base">
+        New here?{" "}
+        <a href="/signup" className="underline">
+          Sign up
+        </a>
+      </span>
     </form>
   );
 }

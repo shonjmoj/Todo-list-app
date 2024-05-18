@@ -5,11 +5,17 @@ import { Toaster } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import { globalContext } from "@/lib/contants";
 
+// add login and signup buttons
+//  isLoading
+//  build backend
+// README.md
+
 export const GlobalContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const {
     data: user,
     responseStatus,
     setResponseStatus,
+    isLoading: userIsLoading,
   } = useFetch<UserData>("/me");
   const [tasks, setTasks] = useState<TaskProps[] | undefined>([]);
 
@@ -27,6 +33,10 @@ export const GlobalContextProvider: FC<PropsWithChildren> = ({ children }) => {
       navigate("/", { replace: true });
     }
   }, [responseStatus, navigate, location.pathname]);
+
+  if (userIsLoading) {
+    return null;
+  }
 
   return (
     <globalContext.Provider

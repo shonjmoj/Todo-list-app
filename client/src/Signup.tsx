@@ -56,6 +56,12 @@ function Signup() {
         type="submit"
         className="border border-slate-900 bg-slate-900 text-slate-300"
       />
+      <span className="text-sm lg:text-base">
+        Already have an account?{" "}
+        <a href="/login" className="underline">
+          Login
+        </a>
+      </span>
     </form>
   );
 }
