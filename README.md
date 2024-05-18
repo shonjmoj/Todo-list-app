@@ -39,4 +39,18 @@ npm i
 npm run build
 npm run start
 ```
+*In order to run tests you can simply execute the following commands :*
+
+**for `pnpm` users :**
+
+```
+pnpm test
+```
+**for `npm` users :**
+
+```
+npm run test
+```
+
+
 *Voilaa! your Todo list is ready to use, **ENJOY.***
