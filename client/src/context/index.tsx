@@ -5,11 +5,6 @@ import { Toaster } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import { globalContext } from "@/lib/contants";
 
-// add login and signup buttons
-//  isLoading
-//  build backend
-// README.md
-
 export const GlobalContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const {
     data: user,
