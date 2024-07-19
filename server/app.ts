@@ -4,10 +4,10 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import { prod } from "./lib/contants";
 import { auth } from "./controller/auth";
-import { user } from "./controller/user";
 import { task } from "./controller/tasks";
+import { user } from "./controller/user";
+import { prod } from "./lib/contants";
 
 dotenv.config();
 
@@ -31,4 +31,4 @@ app.use(auth);
 app.use(user);
 app.use(task);
 
-app.listen(4000);
+app.listen(4173);

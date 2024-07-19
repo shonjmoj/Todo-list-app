@@ -1,4 +1,4 @@
-export const prod = "http://localhost:4173";
+export const prod = "http://localhost:3000";
 
 export const INTERNAL_SERVER_ERROR = "Internal server error";
 export const USER_CREATED = "User created successfully!";
