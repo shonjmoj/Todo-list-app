@@ -59,10 +59,10 @@ const TasksList = () => {
   }
 
   return (
-    <section className="max-h-[500px] flex flex-col gap-3 md:gap-5 items-center w-full overflow-auto">
+    <section className="container max-h-[500px] flex flex-col gap-3 md:gap-5 items-center overflow-auto">
       {!tasks?.length ? (
-        <h1 className="italic text-2xl xl:text-3xl opacity-50 text-center mt-24">
-          No tasks available...
+        <h1 className="text-2xl xl:text-3xl opacity-50 text-center mt-24">
+          Nothing to do...
         </h1>
       ) : (
         tasks?.map((task) => (

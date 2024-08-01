@@ -47,7 +47,7 @@ const AddTaskForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className=" w-full md:w-[70%] xl:w-[50%] flex flex-col justify-between gap-3 sm:gap-5"
+      className=" w-full md:w-[70%] xl:w-[50%] flex flex-col justify-between gap-5 2xl:gap-7"
     >
       <Input
         value={taskTitle}

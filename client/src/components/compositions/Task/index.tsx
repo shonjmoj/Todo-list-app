@@ -28,7 +28,7 @@ const Task: FC<TaskProps> = ({
 
   return (
     <div className="w-full md:w-[70%] xl:w-[50%] flex items-center justify-between p-3 md:p-4 text-slate-800 border border-slate-900 rounded-lg shadow-lg">
-      <div className="flex flex-col justify-start gap-1 xl:gap-4">
+      <div className="flex flex-col justify-start gap-1 xl:gap-4 w-[70%]">
         {editMode ? (
           <>
             <input
@@ -44,19 +44,19 @@ const Task: FC<TaskProps> = ({
             />
           </>
         ) : (
-          <>
+          <div className="flex flex-col">
             <h1 className="text-lg md:text-xl font-semibold">{title}</h1>
             <p className="opacity-80">{description}</p>
-          </>
+          </div>
         )}
       </div>
-      <div className="space-x-2">
+      <div className="flex flex-col justify-center items-center gap-1 lg:gap-2">
         <Button
           className={`${
             status === "pending"
               ? "border-yellow-600 bg-yellow-600"
               : "border-green-600 bg-green-600"
-          } rounded-lg text-xs 2xl:text-sm font-semibold text-slate-300`}
+          } rounded text-xs 2xl:text-sm text-slate-300 w-full`}
           text={status}
           onClick={() =>
             updateTask({
@@ -67,33 +67,35 @@ const Task: FC<TaskProps> = ({
             })
           }
         />
-        <Button
-          disabled={nothingToSave}
-          text={editMode ? "Save" : "Edit"}
-          className={` text-slate-300
+        <div className="flex gap-1">
+          <Button
+            disabled={nothingToSave}
+            text={editMode ? "Save" : "Edit"}
+            className={` text-slate-300
             ${
               editMode
                 ? "border-blue-600 bg-blue-600"
                 : "border-slate-900 bg-slate-900"
             }
-          `}
-          onClick={() => {
-            if (editMode) {
-              updateTask({
-                id: id!,
-                title: taskTitle,
-                description: taskDescription,
-                status,
-              });
-            }
-            setEditMode((prev) => !prev);
-          }}
-        />
-        <Button
-          text="Delete"
-          onClick={() => deleteTask(id!)}
-          className="border-red-600 bg-red-600 text-slate-300"
-        />
+              `}
+            onClick={() => {
+              if (editMode) {
+                updateTask({
+                  id: id!,
+                  title: taskTitle,
+                  description: taskDescription,
+                  status,
+                });
+              }
+              setEditMode((prev) => !prev);
+            }}
+          />
+          <Button
+            text="Delete"
+            onClick={() => deleteTask(id!)}
+            className="border-red-600 bg-red-600 text-slate-300"
+          />
+        </div>
       </div>
     </div>
   );

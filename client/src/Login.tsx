@@ -31,9 +31,11 @@ function Login() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="container flex flex-col justify-center gap-3 md:gap-5 items-center p-2 sm:p-4 h-full"
+      className="sm:w-1/2 lg:w-1/3 2xl:w-1/4 flex flex-col justify-center gap-3 md:gap-5 p-2 sm:p-4 h-full"
     >
-      <h1 className="text-3xl sm:text-4xl text-center font-bold">Login</h1>
+      <h1 className="text-3xl sm:text-4xl xl:text-5xl text-center font-bold">
+        Login
+      </h1>
       <Input
         type="text"
         placeholder="username"
@@ -52,7 +54,7 @@ function Login() {
         type="submit"
         className="border border-slate-900 bg-slate-900 text-slate-300"
       />
-      <span className="text-sm lg:text-base">
+      <span className="text-sm lg:text-base self-center">
         New here?{" "}
         <a href="/signup" className="underline">
           Sign up
