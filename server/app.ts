@@ -17,7 +17,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: prod || "https://todo-list-app-3069.onrender.com",
+    origin: prod || "https://localhost:5173",
     credentials: true,
   })
 );
