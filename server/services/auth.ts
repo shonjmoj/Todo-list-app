@@ -57,7 +57,11 @@ export const login = async (req: Request, res: Response) => {
       expiresIn: 1000 * 60 * 60 * 24,
     });
     res
-      .cookie("token", token, { maxAge: 1000 * 60 * 60 * 25, httpOnly: true })
+      .cookie("token", token, {
+        maxAge: 1000 * 60 * 60 * 25,
+        httpOnly: true,
+        secure: true,
+      })
       .status(200)
       .send("Welcome!");
   } catch (error) {
